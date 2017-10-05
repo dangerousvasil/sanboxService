@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+    web:
+        image: nginx:latest
+        ports:
+            - "8080:80"
+        volumes:
+            - ./front:/var/www/front
+            - ./site.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - code-network
+    php:
+        image: php:7.1-fpm
+        volumes:
+            - ./front:/var/www/front
+        networks:
+            - code-network
+    service:
+        image: php:7.1-fpm
+        volumes:
+            - ./service:/var/www/service
+        networks:
+            - code-network
+
+networks:
+    code-network:
+        driver: bridge
