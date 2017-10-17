@@ -5,7 +5,7 @@ require_once 'vendor/autoload.php';
 use JsonRPC\Client;
 
 // here set up balanced nginx
-$client = new Client('http://web/');
+$client = new Client('http://web:1080/');
 $http = $client->getHttpClient()
        ->withDebug()
     // service set up here
